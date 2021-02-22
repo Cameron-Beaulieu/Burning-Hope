@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Adventurer : Entity
 {
@@ -14,6 +15,7 @@ public class Adventurer : Entity
     public bool wallSliding;
     private bool dashing;
     private bool fastFalling;
+    public GameObject torchPrefab;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -122,8 +124,12 @@ public class Adventurer : Entity
             velocity.y = minJumpVelocity;
         }
     }
-    public override void OnActionInputDown()
+
+    //NOTE: Is called 3 times on a mouse click (I think once for initial press, once for hold, and once on release)
+    public override void OnActionInputDown() 
     {
+        throwTorch();
+        /*
         if (!dashing && dashTimer <= 0)
         {
             dashing = true;
@@ -133,7 +139,7 @@ public class Adventurer : Entity
             }
             velocity.x = collisionController.collisions.facing * dashSpeed;
             dashTimer = dashCooldown;
-        }
+        } */
     } 
     public override void OnActionInputUp() {}
     public override void OnFallInputDown()
@@ -145,6 +151,25 @@ public class Adventurer : Entity
         if (wallSliding)
         {
             fastFalling = false;
+        }
+    }
+
+    /*
+     * DESC: "Throws" a torch. Creates a copy of the torchPrefab, and launches it the direction the player is facing.
+     */
+    public void throwTorch()
+    {
+        if (torches > 0)
+        {
+            Debug.Log("Torch throwing.");
+            GameObject torch = Instantiate(torchPrefab, this.transform.position, Quaternion.identity);
+            //Find the direction from the player to the mouse
+            Vector3 mouseDir = UnityEngine.Camera.main.ScreenToWorldPoint(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, 0)) - this.transform.position;
+            Vector2 mouseDir2D = new Vector2(mouseDir.x, mouseDir.y);
+            mouseDir2D = mouseDir2D.normalized;
+            torch.GetComponent<Rigidbody2D>().AddForce(mouseDir2D * torchThrowForce);
+            torches--;
+            Debug.Log("Torch thrown.");
         }
     }
 }

@@ -50,7 +50,7 @@ public class EntityCollision : MonoBehaviour
             CheckVerticalCollisions(ref amount);
         }
 
-        Debug.Log(amount.x);
+        //Debug.Log(amount.x);
 
         transform.Translate(amount);
     }
@@ -83,7 +83,7 @@ public class EntityCollision : MonoBehaviour
                     continue;
                 }
 
-                Debug.Log("bump");
+                //Debug.Log("bump");
 
                 amount.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
