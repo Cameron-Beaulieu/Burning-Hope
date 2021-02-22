@@ -128,10 +128,10 @@ public class Adventurer : Entity
     //NOTE: Is called 3 times on a mouse click (I think once for initial press, once for hold, and once on release)
     public override void OnActionInputDown() 
     {
-        throwTorch();
-        /*
+        Debug.Log("Dash action registered.");
         if (!dashing && dashTimer <= 0)
         {
+            Debug.Log("Dashing.");
             dashing = true;
             if (movementInput.x != 0)
             {
@@ -139,7 +139,7 @@ public class Adventurer : Entity
             }
             velocity.x = collisionController.collisions.facing * dashSpeed;
             dashTimer = dashCooldown;
-        } */
+        }
     } 
     public override void OnActionInputUp() {}
     public override void OnFallInputDown()
@@ -157,7 +157,7 @@ public class Adventurer : Entity
     /*
      * DESC: "Throws" a torch. Creates a copy of the torchPrefab, and launches it the direction the player is facing.
      */
-    public void throwTorch()
+    public override void ThrowTorch()
     {
         if (torches > 0)
         {

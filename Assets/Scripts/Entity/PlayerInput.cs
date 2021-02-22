@@ -46,6 +46,15 @@ public class PlayerInput : MonoBehaviour
         //but only perform the action once
         if (context.phase == InputActionPhase.Performed)
         {
+            entity.ThrowTorch();
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        Debug.Log("Dash event registered.");
+        if (context.phase == InputActionPhase.Performed)
+        {
             entity.OnActionInputDown();
         }
     }
