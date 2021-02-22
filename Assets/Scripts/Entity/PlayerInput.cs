@@ -42,6 +42,11 @@ public class PlayerInput : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        entity.OnActionInputDown();
+        //OnFire is called three times (for "Started", "Performed", and "Cancelled"),
+        //but only perform the action once
+        if (context.phase == InputActionPhase.Performed)
+        {
+            entity.OnActionInputDown();
+        }
     }
 }

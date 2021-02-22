@@ -161,15 +161,16 @@ public class Adventurer : Entity
     {
         if (torches > 0)
         {
-            Debug.Log("Torch throwing.");
             GameObject torch = Instantiate(torchPrefab, this.transform.position, Quaternion.identity);
+
             //Find the direction from the player to the mouse
             Vector3 mouseDir = UnityEngine.Camera.main.ScreenToWorldPoint(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, 0)) - this.transform.position;
             Vector2 mouseDir2D = new Vector2(mouseDir.x, mouseDir.y);
             mouseDir2D = mouseDir2D.normalized;
+
+            //Give the torch a force in the direction of the mouse (from the player), and decrease the torch counter
             torch.GetComponent<Rigidbody2D>().AddForce(mouseDir2D * torchThrowForce);
             torches--;
-            Debug.Log("Torch thrown.");
         }
     }
 }
