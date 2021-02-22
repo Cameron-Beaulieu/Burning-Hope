@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: WIP_Platforms_2
+  m_Name: p_2
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300004, guid: ac5e0ba3cb5870842890262dd625cb52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
