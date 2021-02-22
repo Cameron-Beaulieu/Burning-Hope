@@ -75,9 +75,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   health: 1
+  maxTorches: 3
+  torches: 3
   maxJumpHeight: 1.5
   minJumpHeight: 0.5
   timeToJumpApex: 0.4
+  torchThrowForce: 2
   minJumpVelocity: 0
   maxJumpVelocity: 0
   gravity: 0
@@ -97,6 +100,8 @@ MonoBehaviour:
   wallSlideSpeed: 1
   wallJumpVelocity: {x: 8, y: 10}
   wallSliding: 0
+  torchPrefab: {fileID: 7890652271216405467, guid: 7a17155b0188f1a43beb80e1be5dafd7,
+    type: 3}
 --- !u!114 &1023479701834076931
 MonoBehaviour:
   m_ObjectHideFlags: 0
