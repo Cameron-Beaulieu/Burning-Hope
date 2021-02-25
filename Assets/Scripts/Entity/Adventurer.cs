@@ -34,6 +34,13 @@ public class Adventurer : Entity
             Die();
         }
 
+        // Check for checkpoints
+        if (collisionController.checkpoint != Vector2.zero)
+        {
+            lastCheckpoint = collisionController.checkpoint;
+            collisionController.checkpoint = Vector2.zero;
+        }
+
         // Go into wall sliding state when coming into contact with a wall, or jumping against a wall from the ground
         if (((!collisionController.collisions.down && collisionController.collisions.left && !collisionController.prevCollisions.left) || (!collisionController.collisions.down && collisionController.collisions.right && !collisionController.prevCollisions.right)) || ((!collisionController.collisions.down && collisionController.collisions.left && collisionController.prevCollisions.down) || (!collisionController.collisions.down && collisionController.collisions.right && collisionController.prevCollisions.down)))
         {
