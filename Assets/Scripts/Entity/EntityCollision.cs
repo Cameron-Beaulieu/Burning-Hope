@@ -16,17 +16,19 @@ public class EntityCollision : MonoBehaviour
     float verticalRaySpacing;
     float skinWidth = .2f;
     BoxCollider2D coll;
+    public bool death;
 
     // Start is called before the first frame update
     void Start()
     {
-       // Get collider
-       coll = GetComponent<BoxCollider2D>();
-       bounds = coll.bounds;
-       horizontalRays = Mathf.RoundToInt(bounds.size.y / 0.1f);
-       verticalRays = Mathf.RoundToInt(bounds.size.x / 0.1f);
-       horizontalRaySpacing = bounds.size.y / (horizontalRays);
-       verticalRaySpacing = bounds.size.x / (verticalRays);
+        // Get collider
+        coll = GetComponent<BoxCollider2D>();
+        bounds = coll.bounds;
+        horizontalRays = Mathf.RoundToInt(bounds.size.y / 0.1f);
+        verticalRays = Mathf.RoundToInt(bounds.size.x / 0.1f);
+        horizontalRaySpacing = bounds.size.y / (horizontalRays);
+        verticalRaySpacing = bounds.size.x / (verticalRays);
+        death = false;
     }
 
     // Update is called once per frame
@@ -83,7 +85,11 @@ public class EntityCollision : MonoBehaviour
                     continue;
                 }
 
-                //Debug.Log("bump");
+                // Check for obstacles
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
+                {
+                    death = true;
+                }
 
                 amount.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
@@ -121,6 +127,12 @@ public class EntityCollision : MonoBehaviour
                 if (hit.collider.tag == "Through")
                 {
                     continue;
+                }
+
+                // Check for obstacles
+                if (hit.collider.tag == "Spikes")
+                {
+                    death = true;
                 }
 
                 amount.y = (hit.distance - skinWidth) * directionY;
