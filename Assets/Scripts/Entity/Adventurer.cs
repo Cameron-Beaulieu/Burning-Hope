@@ -16,6 +16,7 @@ public class Adventurer : Entity
     private bool dashing;
     private bool fastFalling;
     public GameObject torchPrefab;
+    public float memoryLength;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -170,6 +171,7 @@ public class Adventurer : Entity
 
             //Give the torch a force in the direction of the mouse (from the player), and decrease the torch counter
             torch.GetComponent<Rigidbody2D>().AddForce(mouseDir2D * torchThrowForce);
+            torch.GetComponent<Torch>().memoryLength = memoryLength;
             torches--;
         }
     }

@@ -109,6 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d0dc019efc102458cf92cf161f0c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torchMaxLifetime: 5
+  memoryPrefab: {fileID: 6635082885338147376, guid: 3078dea58a0997d42b2200afe8ff4949,
+    type: 3}
+  memoryLength: 0
 --- !u!212 &7890652271216405465
 SpriteRenderer:
   m_ObjectHideFlags: 0

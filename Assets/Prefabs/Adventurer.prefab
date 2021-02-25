@@ -102,6 +102,7 @@ MonoBehaviour:
   wallSliding: 0
   torchPrefab: {fileID: 7890652271216405467, guid: 7a17155b0188f1a43beb80e1be5dafd7,
     type: 3}
+  memoryLength: 2
 --- !u!114 &1023479701834076931
 MonoBehaviour:
   m_ObjectHideFlags: 0
