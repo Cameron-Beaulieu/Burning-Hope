@@ -16,11 +16,8 @@ public class Adventurer : Entity
     private bool dashing;
     private bool fastFalling;
     public GameObject torchPrefab;
-<<<<<<< HEAD
     public float memoryLength;
-=======
     private Vector2 lastCheckpoint;
->>>>>>> main
     // Start is called before the first frame update
     protected override void Start()
     {
