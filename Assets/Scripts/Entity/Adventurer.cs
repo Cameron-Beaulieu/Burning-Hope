@@ -20,7 +20,7 @@ public class Adventurer : Entity
     // Start is called before the first frame update
     protected override void Start()
     {
-        lastCheckpoint = Vector2.zero;
+        lastCheckpoint = this.transform.position; //set the spawn to the current location
         base.Start();
     }
 
