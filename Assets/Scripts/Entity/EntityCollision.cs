@@ -19,6 +19,7 @@ public class EntityCollision : MonoBehaviour
     public bool death;
     public Vector2 checkpoint;
     public GameObject checkpointObject;
+    private Vector2 yOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,11 @@ public class EntityCollision : MonoBehaviour
         verticalRays = Mathf.RoundToInt(bounds.size.x / 0.1f);
         horizontalRaySpacing = bounds.size.y / (horizontalRays);
         verticalRaySpacing = bounds.size.x / (verticalRays);
+
+        // Initial variable values
         death = false;
         checkpoint = Vector2.zero;
+        yOffset = new Vector2(0, 0.2f); //don't spawn in the floor
     }
 
     // Update is called once per frame
@@ -95,7 +99,7 @@ public class EntityCollision : MonoBehaviour
                         }
 
                         //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = hit.collider.gameObject.transform.position;
+                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
                         hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 10;
                         checkpointObject = hit.collider.gameObject;
                     }
@@ -153,7 +157,7 @@ public class EntityCollision : MonoBehaviour
                         }
 
                         //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = hit.collider.gameObject.transform.position;
+                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
                         hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 10;
                         checkpointObject = hit.collider.gameObject;
                     }
