@@ -16,16 +16,35 @@ public class Adventurer : Entity
     private bool dashing;
     private bool fastFalling;
     public GameObject torchPrefab;
+<<<<<<< HEAD
     public float memoryLength;
+=======
+    private Vector2 lastCheckpoint;
+>>>>>>> main
     // Start is called before the first frame update
     protected override void Start()
     {
+        lastCheckpoint = this.transform.position; //set the spawn to the current location
         base.Start();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        // Check for obstacles
+        if (collisionController.death)
+        {
+            collisionController.death = false; //reset the flag
+            Die();
+        }
+
+        // Check for checkpoints
+        if (collisionController.checkpoint != Vector2.zero)
+        {
+            lastCheckpoint = collisionController.checkpoint;
+            collisionController.checkpoint = Vector2.zero;
+        }
+
         // Go into wall sliding state when coming into contact with a wall, or jumping against a wall from the ground
         if (((!collisionController.collisions.down && collisionController.collisions.left && !collisionController.prevCollisions.left) || (!collisionController.collisions.down && collisionController.collisions.right && !collisionController.prevCollisions.right)) || ((!collisionController.collisions.down && collisionController.collisions.left && collisionController.prevCollisions.down) || (!collisionController.collisions.down && collisionController.collisions.right && collisionController.prevCollisions.down)))
         {
@@ -174,5 +193,15 @@ public class Adventurer : Entity
             torch.GetComponent<Torch>().memoryLength = memoryLength;
             torches--;
         }
+    }
+
+    /*
+     * Kill the player, respawns at the last checkpoint.
+     */
+    public void Die()
+    {
+        Debug.Log("You died.");
+        //Reset position
+        this.transform.position = lastCheckpoint;
     }
 }
