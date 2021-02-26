@@ -100,7 +100,7 @@ public class EntityCollision : MonoBehaviour
 
                         //Set the new checkpoints coordinates, turn the light on, and save the object
                         checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 10;
+                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
                         checkpointObject = hit.collider.gameObject;
                     }
                     continue;
@@ -158,7 +158,7 @@ public class EntityCollision : MonoBehaviour
 
                         //Set the new checkpoints coordinates, turn the light on, and save the object
                         checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 10;
+                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
                         checkpointObject = hit.collider.gameObject;
                     }
                     continue;
