@@ -18,10 +18,16 @@ public class Adventurer : Entity
     public GameObject torchPrefab;
     public float memoryLength;
     private Vector2 lastCheckpoint;
+    private Animator anim;
+    private SpriteRenderer sprite;
+    private AudioManager audio;
     // Start is called before the first frame update
     protected override void Start()
     {
         lastCheckpoint = this.transform.position; //set the spawn to the current location
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioManager>();
         base.Start();
     }
 
@@ -62,6 +68,7 @@ public class Adventurer : Entity
         if (collisionController.collisions.down && !collisionController.prevCollisions.down)
         {
             jumps = maxJumps;
+            audio.Play("land");
         }
 
         // Decrease number of jumps for a walk-off
@@ -69,6 +76,8 @@ public class Adventurer : Entity
         {
             jumps--;
         }
+
+        anim.SetBool("wallSliding", wallSliding);
 
         // Dashing cooldown countdown
         if (dashing)
@@ -100,6 +109,7 @@ public class Adventurer : Entity
             if (fastFalling && !collisionController.collisions.down && velocity.y < 0)
             {
                 velocity.y = maxJumpVelocity * -1.5f;
+                anim.SetTrigger("fastFall");
             }
             else if (velocity.y < -1 * maxJumpVelocity)
             {
@@ -107,16 +117,25 @@ public class Adventurer : Entity
             }
         }
 
+        anim.SetFloat("velocity.y", velocity.y);
+
         // Calculate x velocity
         float targetVelocityX = movementInput.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisionController.collisions.down ? dashing ? groundFriction * 2 : groundFriction : dashing ? airFriction * 2 : airFriction));
 
+        anim.SetFloat("velocity.x", Mathf.Abs(Mathf.Round(velocity.x)));
+
         // Move the entity
         collisionController.Move(velocity * Time.deltaTime);
+
+        anim.SetBool("grounded", collisionController.collisions.down);
+
+        sprite.flipX = collisionController.collisions.facing == 1 ? false : true;
 
         // Set velocity to 0 on landing or ceiling
         if (collisionController.collisions.top || collisionController.collisions.down) {
             fastFalling = false;
+            anim.SetBool("fastFalling", fastFalling);
             velocity.y = 0f;
         }
     }
@@ -127,11 +146,15 @@ public class Adventurer : Entity
             velocity.x = collisionController.collisions.facing * -1 * wallJumpVelocity.x;
             velocity.y = wallJumpVelocity.y;
             jumps--;
+            anim.SetTrigger("jump");
+            audio.Play("jump");
         }
         else if (jumps > 0)
         {
             jumps--;
             velocity.y = maxJumpVelocity;
+            anim.SetTrigger("jump");
+            audio.Play("jump");
         }
     }
     public override void OnJumpInputUp()
@@ -156,18 +179,22 @@ public class Adventurer : Entity
             }
             velocity.x = collisionController.collisions.facing * dashSpeed;
             dashTimer = dashCooldown;
+            audio.Play("dash");
         }
     } 
     public override void OnActionInputUp() {}
     public override void OnFallInputDown()
     {
         fastFalling = true;
+        anim.SetBool("fastFalling", fastFalling);
     }
+
     public override void OnFallInputUp()
     {
         if (wallSliding)
         {
             fastFalling = false;
+            anim.SetBool("fastFalling", fastFalling);
         }
     }
 
@@ -198,6 +225,7 @@ public class Adventurer : Entity
     public void Die()
     {
         Debug.Log("You died.");
+        audio.Play("hurt");
         //Reset position
         this.transform.position = lastCheckpoint;
     }
