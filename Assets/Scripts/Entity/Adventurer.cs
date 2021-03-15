@@ -216,6 +216,7 @@ public class Adventurer : Entity
             torch.GetComponent<Rigidbody2D>().AddForce(mouseDir2D * torchThrowForce);
             torch.GetComponent<Torch>().memoryLength = memoryLength;
             torches--;
+            audio.Play("throw");
         }
     }
 
