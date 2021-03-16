@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class BrazierGroup : MonoBehaviour
 {
-    public Tile unlitTile;
-    public Tile litTile;
+    public TileBase unlitTile;
+    public TileBase litTile;
     private Tilemap tilemap;
     private Dictionary<Vector2Int, bool> braziers = new Dictionary<Vector2Int, bool>();
     public bool triggerActive;
