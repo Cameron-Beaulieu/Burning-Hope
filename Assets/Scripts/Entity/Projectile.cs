@@ -37,8 +37,14 @@ public class Projectile : MonoBehaviour
         this.gameObject.transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Projectile collision.");
+        if (collision.gameObject.CompareTag("Solid"))
+        {
+            Debug.Log("Projectile collision.");
+            destroyed = true;
+            //TODO implement destruction animation
+            Destroy(this.gameObject);
+        }
     }
 }
