@@ -40,6 +40,18 @@ public class PlayerInput : MonoBehaviour
         prevMoveState = context.ReadValue<Vector2>();
     }
 
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            entity.OnJumpInputDown();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            entity.OnJumpInputUp();
+        }
+    }
+
     public void OnFire(InputAction.CallbackContext context)
     {
         //OnFire is called three times (for "Started", "Performed", and "Cancelled"),

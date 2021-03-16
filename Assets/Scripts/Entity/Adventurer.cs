@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Adventurer : Entity
 {
     public float dashCooldown = 0.2f;
-    public float dashSpeed = 15;
+    public Vector2 dashSpeed = new Vector2(15f, 10f);
     public int maxJumps = 1;
     public int jumps = 1;
     private float dashTimer;
@@ -177,11 +177,19 @@ public class Adventurer : Entity
         {
             Debug.Log("Dashing.");
             dashing = true;
-            if (movementInput.x != 0)
+            int directionX = 0;
+            int directionY = 0;
+            if (Mathf.Abs(movementInput.x) > 0.1)
             {
                 collisionController.collisions.facing = (int)Mathf.Sign(movementInput.x);
+                directionX = collisionController.collisions.facing;
+                velocity.x = directionX * dashSpeed.x;
             }
-            velocity.x = collisionController.collisions.facing * dashSpeed;
+            if (Mathf.Abs(movementInput.y) > 0.25)
+            {
+                directionY = (int)Mathf.Sign(movementInput.y);
+                velocity.y = directionY * dashSpeed.y;
+            }
             dashTimer = dashCooldown;
             audio.Play("dash");
         }
