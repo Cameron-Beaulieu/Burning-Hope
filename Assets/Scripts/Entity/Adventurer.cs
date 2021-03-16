@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -148,6 +148,8 @@ public class Adventurer : Entity
             jumps--;
             anim.SetTrigger("jump");
             audio.Play("jump");
+            fastFalling = false;
+            anim.SetBool("fastFalling", fastFalling);
         }
         else if (jumps > 0)
         {
@@ -155,6 +157,8 @@ public class Adventurer : Entity
             velocity.y = maxJumpVelocity;
             anim.SetTrigger("jump");
             audio.Play("jump");
+            fastFalling = false;
+            anim.SetBool("fastFalling", fastFalling);
         }
     }
     public override void OnJumpInputUp()
