@@ -19,15 +19,6 @@ public class PlayerInput : MonoBehaviour
         Vector2 currentMoveState = context.ReadValue<Vector2>();
         entity.SetMovementInput(currentMoveState);
 
-        if (currentMoveState.y > 0.5 && prevMoveState.y < 0.5)
-        {
-            entity.OnJumpInputDown();
-        }
-        else if (currentMoveState.y < 0.5 && prevMoveState.y > 0.5)
-        {
-            entity.OnJumpInputUp();
-        }
-
         if (currentMoveState.y < -0.5 && prevMoveState.y > -0.5)
         {
             entity.OnFallInputDown();
