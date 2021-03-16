@@ -189,6 +189,10 @@ public class Adventurer : Entity
             {
                 directionY = (int)Mathf.Sign(movementInput.y);
                 velocity.y = directionY * dashSpeed.y;
+                if (directionY > 0)
+                {
+                    anim.SetTrigger("jump");
+                }
             }
             dashTimer = dashCooldown;
             audio.Play("dash");
