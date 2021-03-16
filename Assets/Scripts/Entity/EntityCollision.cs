@@ -35,7 +35,7 @@ public class EntityCollision : MonoBehaviour
         // Initial variable values
         death = false;
         checkpoint = Vector2.zero;
-        yOffset = new Vector2(0, 0.2f); //don't spawn in the floor
+        yOffset = new Vector2(0, 0.5f); //don't spawn in the floor
     }
 
     // Update is called once per frame
