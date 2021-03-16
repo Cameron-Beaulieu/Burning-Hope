@@ -173,7 +173,7 @@ public class Adventurer : Entity
     public override void OnActionInputDown() 
     {
         Debug.Log("Dash action registered.");
-        if (!dashing && dashTimer <= 0)
+        if (!dashing && dashTimer <= 0 && !wallSliding)
         {
             Debug.Log("Dashing.");
             dashing = true;
