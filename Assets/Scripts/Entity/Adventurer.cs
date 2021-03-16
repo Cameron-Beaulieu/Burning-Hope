@@ -179,13 +179,16 @@ public class Adventurer : Entity
             dashing = true;
             int directionX = 0;
             int directionY = 0;
-            if (Mathf.Abs(movementInput.x) > 0.1)
+            if (Mathf.Abs(movementInput.x) >= 0.1 || (Mathf.Abs(movementInput.y) < 0.25 && Mathf.Abs(movementInput.x) < 0.1))
             {
-                collisionController.collisions.facing = (int)Mathf.Sign(movementInput.x);
+                if (Mathf.Abs(movementInput.x) >= 0.1)
+                {
+                    collisionController.collisions.facing = (int)Mathf.Sign(movementInput.x);
+                }
                 directionX = collisionController.collisions.facing;
                 velocity.x = directionX * dashSpeed.x;
             }
-            if (Mathf.Abs(movementInput.y) > 0.25)
+            if (Mathf.Abs(movementInput.y) >= 0.25)
             {
                 directionY = (int)Mathf.Sign(movementInput.y);
                 velocity.y = directionY * dashSpeed.y;
