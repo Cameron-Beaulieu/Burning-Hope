@@ -6,10 +6,15 @@ using UnityEngine.InputSystem;
 public class Adventurer : Entity
 {
     public float dashCooldown = 0.2f;
+    public float dashDuration = 0.2f;
+    public int maxAirDashes = 1;
+    public int airDashes = 1;
     public Vector2 dashSpeed = new Vector2(15f, 10f);
+    private bool canDash;
     public int maxJumps = 1;
     public int jumps = 1;
-    private float dashTimer;
+    private float dashDurationTimer;
+    private float dashCooldownTimer;
     public float wallSlideSpeed = 0.2f;
     public Vector2 wallJumpVelocity = new Vector2(8, 10);
     public bool wallSliding;
@@ -82,11 +87,25 @@ public class Adventurer : Entity
         // Dashing cooldown countdown
         if (dashing)
         {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer < 0)
+            dashDurationTimer -= Time.deltaTime;
+            if (dashDurationTimer < 0)
             {
                 dashing = false;
             }
+        }
+
+        if (!canDash)
+        {
+            dashCooldownTimer -= Time.deltaTime;
+            if (dashCooldownTimer < 0)
+            {
+                canDash = false;
+            }
+        }
+
+        if (collisionController.collisions.down)
+        {
+            airDashes = maxAirDashes;
         }
         
         // Calculate y velocity
@@ -173,10 +192,11 @@ public class Adventurer : Entity
     public override void OnActionInputDown() 
     {
         Debug.Log("Dash action registered.");
-        if (!dashing && dashTimer <= 0 && !wallSliding)
+        if (dashCooldownTimer <= 0 && airDashes > 0 && !wallSliding)
         {
             Debug.Log("Dashing.");
             dashing = true;
+            canDash = false;
             int directionX = 0;
             int directionY = 0;
             if (Mathf.Abs(movementInput.x) >= 0.1 || (Mathf.Abs(movementInput.y) < 0.25 && Mathf.Abs(movementInput.x) < 0.1))
@@ -197,7 +217,12 @@ public class Adventurer : Entity
                     anim.SetTrigger("jump");
                 }
             }
-            dashTimer = dashCooldown;
+            if (Mathf.Abs(movementInput.y) >= 0.25 || !collisionController.collisions.down)
+            {
+                airDashes--;
+            }
+            dashDurationTimer = dashDuration;
+            dashCooldownTimer = dashCooldown;
             audio.Play("dash");
         }
     } 
