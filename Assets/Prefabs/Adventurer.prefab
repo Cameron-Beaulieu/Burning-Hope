@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 6814016123279227344}
   - component: {fileID: 6146825651626234447}
   - component: {fileID: 2060810524538831016}
+  - component: {fileID: 8362128083082859829}
   m_Layer: 0
   m_Name: Adventurer
   m_TagString: Untagged
@@ -444,3 +445,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10a65d9f4025245a2671abfadbf804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &8362128083082859829
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023479701834076934}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

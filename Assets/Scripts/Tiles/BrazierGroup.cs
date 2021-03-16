@@ -8,6 +8,7 @@ public class BrazierGroup : MonoBehaviour
     public TileBase unlitTile;
     public TileBase litTile;
     private Tilemap tilemap;
+    public GameObject lightPrefab;
     private Dictionary<Vector2Int, bool> braziers = new Dictionary<Vector2Int, bool>();
     public bool triggerActive;
 
@@ -50,8 +51,14 @@ public class BrazierGroup : MonoBehaviour
 
         if (braziers.ContainsKey(localPos))
         {
-            braziers[localPos] = lit;
-            tilemap.SetTile((Vector3Int)localPos, litTile);
+            if (!braziers[localPos])
+            {
+                braziers[localPos] = lit;
+                tilemap.SetTile((Vector3Int)localPos, litTile);
+                Vector3 worldPos = tilemap.GetCellCenterWorld((Vector3Int)localPos);
+                GameObject light = Instantiate(lightPrefab, worldPos, Quaternion.identity);
+                light.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
+            }
         }
     }
 }
