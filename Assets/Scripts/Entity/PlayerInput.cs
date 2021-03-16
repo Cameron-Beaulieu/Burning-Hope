@@ -19,15 +19,6 @@ public class PlayerInput : MonoBehaviour
         Vector2 currentMoveState = context.ReadValue<Vector2>();
         entity.SetMovementInput(currentMoveState);
 
-        if (currentMoveState.y > 0.5 && prevMoveState.y < 0.5)
-        {
-            entity.OnJumpInputDown();
-        }
-        else if (currentMoveState.y < 0.5 && prevMoveState.y > 0.5)
-        {
-            entity.OnJumpInputUp();
-        }
-
         if (currentMoveState.y < -0.5 && prevMoveState.y > -0.5)
         {
             entity.OnFallInputDown();
@@ -38,6 +29,18 @@ public class PlayerInput : MonoBehaviour
         }
 
         prevMoveState = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            entity.OnJumpInputDown();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            entity.OnJumpInputUp();
+        }
     }
 
     public void OnFire(InputAction.CallbackContext context)
