@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 58624
   death: 0
   checkpoint: {x: 0, y: 0}
   checkpointObject: {fileID: 0}

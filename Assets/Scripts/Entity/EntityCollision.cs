@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EntityCollision : MonoBehaviour
 {
@@ -89,27 +90,7 @@ public class EntityCollision : MonoBehaviour
             {
                 if (hit.distance == 0 || hit.collider.tag == "Through")
                 {
-                    // Check for checkpoints
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
-                    {
-                        //Turn off the last checkpoint, if it exists
-                        if (checkpointObject != null && checkpointObject != hit.collider.gameObject)
-                        {
-                            checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
-                        }
-
-                        //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
-                        checkpointObject = hit.collider.gameObject;
-                    }
                     continue;
-                }
-
-                // Check for obstacles
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
-                {
-                    death = true;
                 }
 
                 amount.x = (hit.distance - skinWidth) * directionX;
@@ -147,20 +128,6 @@ public class EntityCollision : MonoBehaviour
             {
                 if (hit.distance == 0 || hit.collider.tag == "Through")
                 {
-                    // Check for checkpoints
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
-                    {
-                        //Turn off the last checkpoint, if it exists
-                        if (checkpointObject != null && checkpointObject != hit.collider.gameObject)
-                        {
-                            checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
-                        }
-
-                        //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
-                        checkpointObject = hit.collider.gameObject;
-                    }
                     continue;
                 }
 
@@ -175,6 +142,43 @@ public class EntityCollision : MonoBehaviour
                 collisions.top = new CollisionSide(directionY == 1, hit.collider.gameObject.layer);
                 collisions.down = new CollisionSide(directionY == -1, hit.collider.gameObject.layer);
             }
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
+        {
+            //Turn off the last checkpoint, if it exists
+            if (checkpointObject != null && checkpointObject != collision.gameObject)
+            {
+                checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
+            }
+
+            //Set the new checkpoints coordinates, turn the light on, and save the object
+            checkpoint = (Vector2)collision.gameObject.transform.position + yOffset;
+            collision.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
+            checkpointObject = collision.gameObject;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
+        {
+            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+            BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
+            foreach (ContactPoint2D pos in collision.contacts)
+            {
+                brazierGroup.LightBrazier(Vector3Int.RoundToInt(pos.point), true);
+            }
+        }
+
+        // Check for obstacles
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Spikes"))
+        {
+            death = true;
         }
     }
 
