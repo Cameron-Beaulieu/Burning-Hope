@@ -61,7 +61,7 @@ public class BurningRopes : MonoBehaviour
         }
     }
 
-    public void LightRope(Vector3Int pos, bool lit)
+    public void LightRope(Vector3 pos, bool lit)
     {
         Vector2Int localPos = (Vector2Int)tilemap.WorldToCell(pos);
 
@@ -83,3 +83,4 @@ public class BurningRopes : MonoBehaviour
         }
     }
 }
+

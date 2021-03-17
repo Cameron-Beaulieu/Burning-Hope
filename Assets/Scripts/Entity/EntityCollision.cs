@@ -162,7 +162,7 @@ public class EntityCollision : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
         {
@@ -170,7 +170,7 @@ public class EntityCollision : MonoBehaviour
             BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
             foreach (ContactPoint2D pos in collision.contacts)
             {
-                brazierGroup.LightBrazier(Vector3Int.CeilToInt(pos.point), true);
+                brazierGroup.LightBrazier(pos.point, true);
             }
         }
 
@@ -181,7 +181,7 @@ public class EntityCollision : MonoBehaviour
             BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
             foreach (ContactPoint2D pos in collision.contacts)
             {
-                ropes.LightRope(Vector3Int.CeilToInt(pos.point), true);
+                ropes.LightRope(pos.point, true);
             }
         }
 

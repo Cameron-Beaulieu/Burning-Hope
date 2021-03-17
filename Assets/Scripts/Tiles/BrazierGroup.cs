@@ -45,7 +45,7 @@ public class BrazierGroup : MonoBehaviour
         }
     }
 
-    public void LightBrazier(Vector3Int pos, bool lit)
+    public void LightBrazier(Vector3 pos, bool lit)
     {
         Vector2Int localPos = (Vector2Int)tilemap.WorldToCell(pos);
 
