@@ -147,7 +147,6 @@ public class EntityCollision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
         {
             //Turn off the last checkpoint, if it exists
@@ -171,7 +170,18 @@ public class EntityCollision : MonoBehaviour
             BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
             foreach (ContactPoint2D pos in collision.contacts)
             {
-                brazierGroup.LightBrazier(Vector3Int.RoundToInt(pos.point), true);
+                brazierGroup.LightBrazier(Vector3Int.CeilToInt(pos.point), true);
+            }
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ropes"))
+        {
+            Debug.Log(collision);
+            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+            BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
+            foreach (ContactPoint2D pos in collision.contacts)
+            {
+                ropes.LightRope(Vector3Int.CeilToInt(pos.point), true);
             }
         }
 
