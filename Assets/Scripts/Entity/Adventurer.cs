@@ -103,7 +103,7 @@ public class Adventurer : Entity
             }
         }
 
-        if (collisionController.collisions.down)
+        if (collisionController.collisions.down || wallSliding)
         {
             airDashes = maxAirDashes;
         }
