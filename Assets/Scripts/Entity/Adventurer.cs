@@ -112,7 +112,7 @@ public class Adventurer : Entity
         {
             if (fastFalling)
             {
-                velocity.y = wallSlideSpeed * -2f;
+                velocity.y = wallSlideSpeed * -4f;
             }
             else if (velocity.y < -1 * wallSlideSpeed)
             {
