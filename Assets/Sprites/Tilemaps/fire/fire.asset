@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: fire
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 8ac06064805455e40a01e80179e2385e, type: 3}
+  - {fileID: 21300000, guid: 65cfb5533a6992b48bd55226e9052bdb, type: 3}
+  - {fileID: 21300000, guid: fc7ec0948ab07f1468b43bbfdad26692, type: 3}
+  - {fileID: 21300000, guid: 4848566781b075f4cbc87c83a6c559a1, type: 3}
+  - {fileID: 21300000, guid: c66f3957437ac8d4bac5322f8fff0414, type: 3}
+  - {fileID: 21300000, guid: 6e4de41448b35f94582274bd49ce9834, type: 3}
+  - {fileID: 21300000, guid: a2198aee65a7f9043a3cbc1aac3a5d44, type: 3}
+  - {fileID: 21300000, guid: 6f6ebc751d0e9f1489dff4b9435a6758, type: 3}
+  m_MinSpeed: 15
+  m_MaxSpeed: 15
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

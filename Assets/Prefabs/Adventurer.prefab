@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6814016123279227344}
   - component: {fileID: 6146825651626234447}
   - component: {fileID: 2060810524538831016}
-  - component: {fileID: 807547661311098922}
+  - component: {fileID: 8362128083082859829}
   m_Layer: 0
   m_Name: Adventurer
   m_TagString: Untagged
@@ -202,6 +202,24 @@ MonoBehaviour:
   torchPrefab: {fileID: 7890652271216405467, guid: 7a17155b0188f1a43beb80e1be5dafd7,
     type: 3}
   memoryLength: 2
+--- !u!114 &1023479701834076931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023479701834076934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c99b6a41ff08642b28fe26060c5346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 58624
+  death: 0
+  checkpoint: {x: 0, y: 0}
+  checkpointObject: {fileID: 0}
 --- !u!212 &1023479701834076928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -446,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10a65d9f4025245a2671abfadbf804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &807547661311098922
+--- !u!50 &8362128083082859829
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -456,7 +474,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1023479701834076934}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
