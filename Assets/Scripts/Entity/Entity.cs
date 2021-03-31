@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour
     public int maxHealth = 1;
     public int health = 1;
     public int maxTorches = 3;
-    public int torches = 1000;
+    public int torches = 1;
     public float maxJumpHeight = 2f;
     public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;

@@ -223,7 +223,7 @@ PrefabInstance:
     - target: {fileID: 1023479701834076940, guid: 0e9bb6fedaf46584f9fe0367b5ec5374,
         type: 3}
       propertyPath: torches
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023479701834076940, guid: 0e9bb6fedaf46584f9fe0367b5ec5374,
         type: 3}

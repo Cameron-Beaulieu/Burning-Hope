@@ -21,6 +21,8 @@ public class Adventurer : Entity
     private bool dashing;
     private bool fastFalling;
     public GameObject torchPrefab;
+    private float torchCooldown = 2.0f;
+    private float torchDuration = 0f;
     public float memoryLength;
     private Vector2 lastCheckpoint;
     private Animator anim;
@@ -150,6 +152,14 @@ public class Adventurer : Entity
             fastFalling = false;
             anim.SetBool("fastFalling", fastFalling);
             velocity.y = 0f;
+        }
+
+        // Update the torch cooldown timer
+        torchDuration += Time.deltaTime;
+        if (torchDuration > torchCooldown)
+        {
+            torchDuration = 0f;
+            torches++;
         }
     }
 
