@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 9472
   death: 0
   checkpoint: {x: 0, y: 0}
   checkpointObject: {fileID: 0}
@@ -172,11 +172,11 @@ MonoBehaviour:
   maxHealth: 1
   health: 1
   maxTorches: 3
-  torches: 3
+  torches: 1
   maxJumpHeight: 1.5
   minJumpHeight: 0.5
   timeToJumpApex: 0.4
-  torchThrowForce: 2
+  torchThrowForce: 800
   minJumpVelocity: 0
   maxJumpVelocity: 0
   gravity: 0
@@ -202,24 +202,6 @@ MonoBehaviour:
   torchPrefab: {fileID: 7890652271216405467, guid: 7a17155b0188f1a43beb80e1be5dafd7,
     type: 3}
   memoryLength: 2
---- !u!114 &1023479701834076931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023479701834076934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c99b6a41ff08642b28fe26060c5346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 58624
-  death: 0
-  checkpoint: {x: 0, y: 0}
-  checkpointObject: {fileID: 0}
 --- !u!212 &1023479701834076928
 SpriteRenderer:
   m_ObjectHideFlags: 0
