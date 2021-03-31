@@ -35,7 +35,7 @@ public class EntityCollision : MonoBehaviour
         // Initial variable values
         death = false;
         checkpoint = Vector2.zero;
-        yOffset = new Vector2(0, 0.7f); //don't spawn in the floor
+        yOffset = new Vector2(0, 1.5f); //don't spawn in the floor
     }
 
     // Update is called once per frame
@@ -107,10 +107,11 @@ public class EntityCollision : MonoBehaviour
                 }
 
                 // Check for obstacles
+                /*
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
                 {
                     death = true;
-                }
+                }*/
 
                 amount.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
@@ -165,10 +166,11 @@ public class EntityCollision : MonoBehaviour
                 }
 
                 // Check for obstacles
+                /*
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
                 {
                     death = true;
-                }
+                }*/
 
                 amount.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;

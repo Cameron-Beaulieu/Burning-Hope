@@ -26,6 +26,7 @@ public class Adventurer : Entity
     private Animator anim;
     private SpriteRenderer sprite;
     private AudioManager audio;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -39,13 +40,6 @@ public class Adventurer : Entity
     // Update is called once per frame
     protected override void Update()
     {
-        // Check for obstacles
-        if (collisionController.death)
-        {
-            collisionController.death = false; //reset the flag
-            Die();
-        }
-
         // Check for checkpoints
         if (collisionController.checkpoint != Vector2.zero)
         {
@@ -158,6 +152,7 @@ public class Adventurer : Entity
             velocity.y = 0f;
         }
     }
+
     public override void OnJumpInputDown()
     {
         if (wallSliding)

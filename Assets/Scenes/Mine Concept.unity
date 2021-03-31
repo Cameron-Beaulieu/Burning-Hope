@@ -145,6 +145,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 1023479701834076929, guid: 0e9bb6fedaf46584f9fe0367b5ec5374,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1023479701834076930, guid: 0e9bb6fedaf46584f9fe0367b5ec5374,
         type: 3}
       propertyPath: m_RootOrder
@@ -230,6 +235,11 @@ PrefabInstance:
         type: 3}
       propertyPath: torchThrowForce
       value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784605174292471633, guid: 0e9bb6fedaf46584f9fe0367b5ec5374,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e9bb6fedaf46584f9fe0367b5ec5374, type: 3}
@@ -35508,6 +35518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[80].Array.data[1505].Y
       value: -380000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460914108250176008, guid: db2cef7a188306445a10261ceec018c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Through
       objectReference: {fileID: 0}
     - target: {fileID: 3923263854687117503, guid: db2cef7a188306445a10261ceec018c0,
         type: 3}
