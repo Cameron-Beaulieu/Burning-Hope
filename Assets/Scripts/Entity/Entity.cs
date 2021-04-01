@@ -73,4 +73,5 @@ public abstract class Entity : MonoBehaviour
     public abstract void OnFallInputDown();
     public abstract void OnFallInputUp();
     public abstract void ThrowTorch();
+    public abstract void Die();
 }

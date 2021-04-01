@@ -272,7 +272,7 @@ public class Adventurer : Entity
     /*
      * Kill the player, respawns at the last checkpoint.
      */
-    public void Die()
+    public override void Die()
     {
         Debug.Log("You died.");
         audio.Play("hurt");

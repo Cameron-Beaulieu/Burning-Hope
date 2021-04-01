@@ -55,10 +55,17 @@ public class PlayerInput : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        Debug.Log("Dash event registered.");
         if (context.phase == InputActionPhase.Performed)
         {
             entity.OnActionInputDown();
+        }
+    }
+
+    public void OnRespawn(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            entity.Die();
         }
     }
 }
