@@ -159,7 +159,7 @@ public class Adventurer : Entity
         if (torchDuration > torchCooldown)
         {
             torchDuration = 0f;
-            torches++;
+            torches = 1;
         }
     }
 
