@@ -11,11 +11,13 @@ public class BrazierGroup : MonoBehaviour
     public GameObject lightPrefab;
     private Dictionary<Vector2Int, bool> braziers = new Dictionary<Vector2Int, bool>();
     public bool triggerActive;
+    private GameObject child;
 
     // Start is called before the first frame update
     void Start()
     {
         tilemap = GetComponent<Tilemap>();
+        child = gameObject.transform.GetChild(0).gameObject;
 
         foreach (var pos in tilemap.cellBounds.allPositionsWithin)
         {
@@ -28,8 +30,7 @@ public class BrazierGroup : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckForActivation()
     {
         // activate trigger when all braziers are lit
         if (!triggerActive)
@@ -41,6 +42,11 @@ public class BrazierGroup : MonoBehaviour
                 {
                     triggerActive = false;
                 }
+            }
+
+            if (triggerActive)
+            {
+                child.GetComponent<TriggerEvent>().OnTrigger();
             }
         }
     }
@@ -58,6 +64,7 @@ public class BrazierGroup : MonoBehaviour
                 Vector3 worldPos = tilemap.GetCellCenterWorld((Vector3Int)localPos);
                 GameObject light = Instantiate(lightPrefab, worldPos, Quaternion.identity);
                 light.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
+                CheckForActivation();
             }
         }
     }
