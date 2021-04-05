@@ -25,6 +25,7 @@ public class Adventurer : Entity
     private float torchDuration = 0f;
     public float memoryLength;
     private Vector2 lastCheckpoint;
+    private GameObject magicTorch;
     private Animator anim;
     private SpriteRenderer sprite;
     private AudioManager audio;
@@ -276,7 +277,23 @@ public class Adventurer : Entity
     {
         Debug.Log("You died.");
         audio.Play("hurt");
+
         //Reset position
         this.transform.position = lastCheckpoint;
+
+        //Reset position of torch if necessary
+        if (magicTorch != null)
+        {
+            Debug.Log("Respawning magic torch.");
+            magicTorch.GetComponent<MagicTorch>().respawn();
+        }
+    }
+
+    /*
+     * Sets the magic torch variable.
+     */
+    public void setMagicTorch(GameObject mt)
+    {
+        this.magicTorch = mt;
     }
 }

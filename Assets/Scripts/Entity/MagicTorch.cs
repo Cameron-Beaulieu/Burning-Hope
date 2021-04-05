@@ -12,8 +12,11 @@ public class MagicTorch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Spawn the torch on the player position
+        // Link the torch and adventurer
         adventurer = GameObject.FindGameObjectWithTag("Player");
+        adventurer.GetComponent<Adventurer>().setMagicTorch(this.gameObject);
+
+        // Spawn the torch on the player position
         this.respawn();
     }
 
