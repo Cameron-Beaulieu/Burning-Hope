@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Torch : MonoBehaviour
 {
@@ -41,6 +42,24 @@ public class Torch : MonoBehaviour
         if (torchTimeAlive > torchMaxLifetime)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
+        {
+            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+            BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
+            brazierGroup.LightBrazier(collision.ClosestPoint(transform.position), true);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ropes"))
+        {
+            Debug.Log(collision);
+            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+            BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
+            ropes.LightRope(collision.ClosestPoint(transform.position), true);
         }
     }
 }

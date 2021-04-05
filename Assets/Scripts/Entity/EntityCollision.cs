@@ -163,16 +163,13 @@ public class EntityCollision : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
         {
             Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
             BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
-            foreach (ContactPoint2D pos in collision.contacts)
-            {
-                brazierGroup.LightBrazier(pos.point, true);
-            }
+            brazierGroup.LightBrazier(collision.ClosestPoint(transform.position), true);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ropes"))
@@ -180,10 +177,7 @@ public class EntityCollision : MonoBehaviour
             Debug.Log(collision);
             Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
             BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
-            foreach (ContactPoint2D pos in collision.contacts)
-            {
-                ropes.LightRope(pos.point, true);
-            }
+            ropes.LightRope(collision.ClosestPoint(transform.position), true);
         }
     }
 
