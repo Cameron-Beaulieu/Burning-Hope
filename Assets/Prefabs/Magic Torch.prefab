@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9208852142842567673}
   - component: {fileID: 9208852142842567675}
   - component: {fileID: 9208852142842567668}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Magic Torch
   m_TagString: Solid
   m_Icon: {fileID: 0}
