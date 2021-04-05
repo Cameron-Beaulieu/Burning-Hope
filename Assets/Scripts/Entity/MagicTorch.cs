@@ -7,11 +7,14 @@ public class MagicTorch : MonoBehaviour
 {
     public float moveSpeed = 1f;
     private Vector3 lastPos;
+    private GameObject adventurer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Spawn the torch on the player position
+        adventurer = GameObject.FindGameObjectWithTag("Player");
+        this.respawn();
     }
 
     // FixedUpdate is called at a consistent rate
@@ -24,6 +27,15 @@ public class MagicTorch : MonoBehaviour
 
         // Move the torch towards the mouse position
         this.GetComponent<Rigidbody2D>().velocity = (Vector3)(mouseDir2D * moveSpeed);
+    }
+
+    /*
+     * Reset the position of the magic torch to the player and remove any velocity.
+     */
+    public void respawn()
+    {
+        this.transform.position = adventurer.transform.position;
+        this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
