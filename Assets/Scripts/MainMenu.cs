@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public void LoadGame()
     {
-        GlobalState.Scene = 1;
-        SceneManager.LoadScene("Loading Scene");
+        GlobalState.LoadLevel(1);
     }
 }

@@ -57,48 +57,49 @@ public class BurningRopes : MonoBehaviour
     void Update()
     {
         // burn ropes
-        foreach (KeyValuePair<Vector2Int, bool> rope in ropeBurning)
+        List<Vector2Int> keys = new List<Vector2Int>(ropeBurning.Keys);
+        foreach (Vector2Int rope in keys)
         {
-            if (rope.Value)
+            if (ropeBurning[rope])
             {
-                ropeTimers[rope.Key] -= Time.deltaTime;
+                ropeTimers[rope] -= Time.deltaTime;
             }
-            if (ropeTimers[rope.Key] <= 0)
+            if (ropeTimers[rope] <= 0)
             {
-                ropeTimers.Remove(rope.Key);
-                ropeBurning.Remove(rope.Key);
-                Destroy(ropeLights[rope.Key]);
-                ropeLights.Remove(rope.Key);
+                ropeTimers.Remove(rope);
+                ropeBurning.Remove(rope);
+                Destroy(ropeLights[rope]);
+                ropeLights.Remove(rope);
                 // burn surrounding ropes
-                Vector2Int up = rope.Key + Vector2Int.up;
+                Vector2Int up = rope + Vector2Int.up;
                 LightRopeCell(up, true);
                 Vector3 brazierUp = tilemap.CellToWorld((Vector3Int)up);
                 if (braziers.Contains(brazierUp))
                 {
                     LightBrazier(brazierUp);
                 }
-                Vector2Int down = rope.Key + Vector2Int.down;
+                Vector2Int down = rope + Vector2Int.down;
                 LightRopeCell(down, true);
                 Vector3 brazierDown = tilemap.CellToWorld((Vector3Int)down);
                 if (braziers.Contains(brazierDown))
                 {
                     LightBrazier(brazierDown);
                 }
-                Vector2Int left = rope.Key + Vector2Int.left;
+                Vector2Int left = rope + Vector2Int.left;
                 LightRopeCell(left, true);
                 Vector3 brazierLeft = tilemap.CellToWorld((Vector3Int)left);
                 if (braziers.Contains(brazierLeft))
                 {
                     LightBrazier(brazierLeft);
                 }
-                Vector2Int right = rope.Key + Vector2Int.right;
+                Vector2Int right = rope + Vector2Int.right;
                 LightRopeCell(right, true);
                 Vector3 brazierRight = tilemap.CellToWorld((Vector3Int)right);
                 if (braziers.Contains(brazierRight))
                 {
                     LightBrazier(brazierRight);
                 }
-                tilemap.SetTile((Vector3Int)rope.Key, null);
+                tilemap.SetTile((Vector3Int)rope, null);
             }
         }
     }
