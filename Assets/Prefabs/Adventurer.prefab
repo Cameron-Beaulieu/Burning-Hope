@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Color: {r: 0.8301887, g: 0.7490331, b: 0.121395506, a: 1}
   m_Intensity: 2
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 81f447fc00000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   health: 1
   maxTorches: 3
   torches: 1
+  magicTorch: 0
   maxJumpHeight: 1.5
   minJumpHeight: 0.5
   timeToJumpApex: 0.4
