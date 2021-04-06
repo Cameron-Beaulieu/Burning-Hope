@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void LoadGame(int level)
+    public void LoadGame()
     {
-        GlobalState.Scene = 1 + level; //Start loading the requested level
-        SceneManager.LoadScene("Loading Scene");
+        GlobalState.LoadLevel(1);
     }
 }
