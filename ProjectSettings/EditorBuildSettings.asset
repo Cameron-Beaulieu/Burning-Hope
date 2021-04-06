@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Mine Concept.unity
-    guid: 7a52e17031322484d91e5ef2146f9e15
-  - enabled: 1
     path: Assets/Scenes/Loading Scene.unity
     guid: b0186ffa4f0f95940b04ada52a296242
+  - enabled: 1
+    path: Assets/Scenes/Mine Concept.unity
+    guid: 7a52e17031322484d91e5ef2146f9e15
   m_configObjects: {}
