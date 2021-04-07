@@ -11,6 +11,12 @@ public class MainMenu : MonoBehaviour
         GlobalState.LoadLevel(1);
     }
 
+    public void LoadTutorial()
+    {
+        GlobalState.Time = 0f;
+        GlobalState.LoadScene(8);
+    }
+
     public void NextLevel()
     {
         GlobalState.LoadLevel(GlobalState.Scene / 2 + 1);
