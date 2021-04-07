@@ -7,6 +7,7 @@ public class Adventurer : Entity
 {
     public float dashCooldown = 0.2f;
     public float dashDuration = 0.2f;
+    private bool dashUpwards = false;
     public int maxAirDashes = 1;
     public int airDashes = 1;
     public Vector2 dashSpeed = new Vector2(15f, 10f);
@@ -96,13 +97,15 @@ public class Adventurer : Entity
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer < 0)
             {
-                canDash = false;
+                canDash = true;
+                dashUpwards = false;
             }
         }
 
         if (collisionController.collisions.down || wallSliding)
         {
             airDashes = maxAirDashes;
+            dashUpwards = false;
         }
         
         // Calculate y velocity
@@ -188,7 +191,7 @@ public class Adventurer : Entity
     }
     public override void OnJumpInputUp()
     {
-        if (velocity.y > minJumpVelocity)
+        if (velocity.y > minJumpVelocity && !dashUpwards)
         {
             velocity.y = minJumpVelocity;
         }
@@ -222,6 +225,7 @@ public class Adventurer : Entity
                 {
                     anim.SetTrigger("jump");
                 }
+                dashUpwards = true;
             }
             if (Mathf.Abs(movementInput.y) >= 0.25 || !collisionController.collisions.down)
             {
