@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EntityCollision : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class EntityCollision : MonoBehaviour
     BoxCollider2D coll;
     public bool death;
     public Vector2 checkpoint;
-    public GameObject checkpointObject;
     private Vector2 yOffset;
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class EntityCollision : MonoBehaviour
         // Initial variable values
         death = false;
         checkpoint = Vector2.zero;
-        yOffset = new Vector2(0, 0.5f); //don't spawn in the floor
+        yOffset = new Vector2(0, 1.5f); //don't spawn in the floor
     }
 
     // Update is called once per frame
@@ -89,27 +89,7 @@ public class EntityCollision : MonoBehaviour
             {
                 if (hit.distance == 0 || hit.collider.tag == "Through")
                 {
-                    // Check for checkpoints
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
-                    {
-                        //Turn off the last checkpoint, if it exists
-                        if (checkpointObject != null && checkpointObject != hit.collider.gameObject)
-                        {
-                            checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
-                        }
-
-                        //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
-                        checkpointObject = hit.collider.gameObject;
-                    }
                     continue;
-                }
-
-                // Check for obstacles
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
-                {
-                    death = true;
                 }
 
                 amount.x = (hit.distance - skinWidth) * directionX;
@@ -147,34 +127,42 @@ public class EntityCollision : MonoBehaviour
             {
                 if (hit.distance == 0 || hit.collider.tag == "Through")
                 {
-                    // Check for checkpoints
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
-                    {
-                        //Turn off the last checkpoint, if it exists
-                        if (checkpointObject != null && checkpointObject != hit.collider.gameObject)
-                        {
-                            checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
-                        }
-
-                        //Set the new checkpoints coordinates, turn the light on, and save the object
-                        checkpoint = (Vector2)hit.collider.gameObject.transform.position + yOffset;
-                        hit.collider.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
-                        checkpointObject = hit.collider.gameObject;
-                    }
                     continue;
                 }
 
                 // Check for obstacles
+                /*
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Spikes"))
                 {
                     death = true;
-                }
+                }*/
 
                 amount.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
                 collisions.top = new CollisionSide(directionY == 1, hit.collider.gameObject.layer);
                 collisions.down = new CollisionSide(directionY == -1, hit.collider.gameObject.layer);
             }
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
+        {
+            BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
+            brazierGroup.LightBrazier(collision.ClosestPoint(transform.position), true);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ropes"))
+        {
+            BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
+            ropes.LightRope(collision.ClosestPoint(transform.position), true);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
+        {
+            Checkpoint checkpointObject = collision.gameObject.GetComponent<Checkpoint>();
+            checkpoint = (Vector2)checkpointObject.LightBrazier(collision.ClosestPoint(transform.position), true) + yOffset;
         }
     }
 

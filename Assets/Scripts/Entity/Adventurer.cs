@@ -21,11 +21,15 @@ public class Adventurer : Entity
     private bool dashing;
     private bool fastFalling;
     public GameObject torchPrefab;
+    private float torchCooldown = 2.0f;
+    private float torchDuration = 0f;
     public float memoryLength;
     private Vector2 lastCheckpoint;
+    private GameObject magicTorchGO;
     private Animator anim;
     private SpriteRenderer sprite;
     private AudioManager audio;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -39,13 +43,6 @@ public class Adventurer : Entity
     // Update is called once per frame
     protected override void Update()
     {
-        // Check for obstacles
-        if (collisionController.death)
-        {
-            collisionController.death = false; //reset the flag
-            Die();
-        }
-
         // Check for checkpoints
         if (collisionController.checkpoint != Vector2.zero)
         {
@@ -116,7 +113,7 @@ public class Adventurer : Entity
         {
             if (fastFalling)
             {
-                velocity.y = wallSlideSpeed * -2f;
+                velocity.y = wallSlideSpeed * -4f;
             }
             else if (velocity.y < -1 * wallSlideSpeed)
             {
@@ -157,7 +154,16 @@ public class Adventurer : Entity
             anim.SetBool("fastFalling", fastFalling);
             velocity.y = 0f;
         }
+
+        // Update the torch cooldown timer
+        torchDuration += Time.deltaTime;
+        if (torchDuration > torchCooldown)
+        {
+            torchDuration = 0f;
+            torches = true;
+        }
     }
+
     public override void OnJumpInputDown()
     {
         if (wallSliding)
@@ -247,7 +253,7 @@ public class Adventurer : Entity
      */
     public override void ThrowTorch()
     {
-        if (torches > 0)
+        if (!magicTorch && torches)
         {
             GameObject torch = Instantiate(torchPrefab, this.transform.position, Quaternion.identity);
 
@@ -259,7 +265,7 @@ public class Adventurer : Entity
             //Give the torch a force in the direction of the mouse (from the player), and decrease the torch counter
             torch.GetComponent<Rigidbody2D>().AddForce(mouseDir2D * torchThrowForce);
             torch.GetComponent<Torch>().memoryLength = memoryLength;
-            torches--;
+            torches = false;
             audio.Play("throw");
         }
     }
@@ -267,11 +273,28 @@ public class Adventurer : Entity
     /*
      * Kill the player, respawns at the last checkpoint.
      */
-    public void Die()
+    public override void Die()
     {
         Debug.Log("You died.");
         audio.Play("hurt");
+
         //Reset position
         this.transform.position = lastCheckpoint;
+
+        //Reset position of torch if necessary
+        if (magicTorchGO != null)
+        {
+            Debug.Log("Respawning magic torch.");
+            magicTorchGO.GetComponent<MagicTorch>().respawn();
+        }
+    }
+
+    /*
+     * Sets the magic torch game object and sets the flag to true.
+     */
+    public void setMagicTorch(GameObject mt)
+    {
+        this.magicTorchGO = mt;
+        this.magicTorch = true;
     }
 }
