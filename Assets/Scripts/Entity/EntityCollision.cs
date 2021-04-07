@@ -19,7 +19,6 @@ public class EntityCollision : MonoBehaviour
     BoxCollider2D coll;
     public bool death;
     public Vector2 checkpoint;
-    public GameObject checkpointObject;
     private Vector2 yOffset;
 
     // Start is called before the first frame update
@@ -146,38 +145,24 @@ public class EntityCollision : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
-        {
-            //Turn off the last checkpoint, if it exists
-            if (checkpointObject != null && checkpointObject != collision.gameObject)
-            {
-                checkpointObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 0;
-            }
-
-            //Set the new checkpoints coordinates, turn the light on, and save the object
-            checkpoint = (Vector2)collision.gameObject.transform.position + yOffset;
-            collision.gameObject.transform.Find("Point Light 2D").gameObject.GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().intensity = 1;
-            checkpointObject = collision.gameObject;
-        }
-    }
-
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Braziers"))
         {
-            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
             BrazierGroup brazierGroup = collision.gameObject.GetComponent<BrazierGroup>();
             brazierGroup.LightBrazier(collision.ClosestPoint(transform.position), true);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ropes"))
         {
-            Debug.Log(collision);
-            Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
             BurningRopes ropes = collision.gameObject.GetComponent<BurningRopes>();
             ropes.LightRope(collision.ClosestPoint(transform.position), true);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Checkpoints"))
+        {
+            Checkpoint checkpointObject = collision.gameObject.GetComponent<Checkpoint>();
+            checkpoint = (Vector2)checkpointObject.LightBrazier(collision.ClosestPoint(transform.position), true) + yOffset;
         }
     }
 
