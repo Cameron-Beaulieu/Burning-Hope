@@ -34,7 +34,7 @@ EditorBuildSettings:
     guid: 4c08d8a9011dd1d40b470de9087c8c39
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
-    guid: 7a52e17031322484d91e5ef2146f9e15
+    guid: 164a458dac3877b4588edd9eff43a088
   - enabled: 1
     path: Assets/Scenes/Story Intro.unity
     guid: bc655d2f4888fa24785825935d08d478
