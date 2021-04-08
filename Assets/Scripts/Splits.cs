@@ -19,4 +19,9 @@ public class Splits : MonoBehaviour
         time += Time.deltaTime;
         textController.text = time.ToString("F2");
     }
+
+    public float getTime()
+    {
+        return time;
+    }
 }
