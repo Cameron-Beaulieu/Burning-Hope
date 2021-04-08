@@ -30,7 +30,11 @@ public class SceneLoad : TriggerEvent
             default:
                 break;
         }
-        GlobalState.Time += splits.GetComponent<Splits>().getTime();
+
+        if (splits != null)
+        {
+            GlobalState.Time += splits.GetComponent<Splits>().getTime();
+        }
         GlobalState.LoadScene(sceneToLoad);
     }
     public void OnTriggerStay2D(Collider2D collision)

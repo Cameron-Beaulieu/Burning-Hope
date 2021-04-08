@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: b0186ffa4f0f95940b04ada52a296242
   - enabled: 1
     path: Assets/Scenes/Cave Level.unity
-    guid: 7a52e17031322484d91e5ef2146f9e15
+    guid: 685db8ea25a995e488e977ad8ce08ffb
   - enabled: 1
     path: Assets/Scenes/End Cave.unity
     guid: e2acc5c54b2024544964357db3610e55
@@ -27,6 +27,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Cult Level.unity
     guid: 29d591237cef05a4aa8b0c60272ca110
   - enabled: 1
+    path: Assets/Scenes/End Cult.unity
+    guid: 87181b437f43252498ee84e8de34dce5
+  - enabled: 1
     path: Assets/Scenes/End Screen.unity
     guid: 4c08d8a9011dd1d40b470de9087c8c39
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 7a52e17031322484d91e5ef2146f9e15
+  - enabled: 1
+    path: Assets/Scenes/Story Intro.unity
+    guid: bc655d2f4888fa24785825935d08d478
+  - enabled: 1
+    path: Assets/Scenes/Story Intro 2.unity
+    guid: 422086b1cf94a6f4c89a0b232858ff1d
+  - enabled: 1
+    path: Assets/Scenes/Story Intro 3.unity
+    guid: f90888de2bc15bd47ab2a88d34ba32cd
   m_configObjects: {}
