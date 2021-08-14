@@ -25,7 +25,11 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
 - Spacebar to jump
   - You get one jump off the ground/wall and a second jump while in mid air
   - Second jump resets when you touch the ground or a wall
+<img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Player%20Spirte.png" />
+
 - Left click to throw a torch
+<img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Torch%20Throw.png" />
+
 - Right click to dash (the dash directions, i.e. holding W and D while dashing makes your dash up and to the right at a 45 degree angle)
 - Red Braziers are checkpoints, touch them to light them (they act as respawn points)
 - R to reset to your last checkpoint (start of level if you have not reached a checkpoint)
@@ -34,7 +38,13 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
   - Blue Braziers can be lit by touching them or throwing a torch at them. Once lit, they destroy certain portions of the wall in the level, opening secret paths
 - Cult Mechanics (area 3)
   - Projectiles are spawned by red projectile runes. These projectiles kill the player on contact
+<img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Projectile%20Spirtes.png" />
+
   - The Magic Light follows your cursor and will destroy all projectils that collide with it, as well as illuminating the surrounding area
+<div display = "inline-block">
+<img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Magic%20Torch%201.png" width = 30%/>
+<img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Magic%20Torch%202.png" width = 30% />
+</div>
 
 ## Play The Game
 http://creative.caslab.queensu.ca/~burning-hope/
