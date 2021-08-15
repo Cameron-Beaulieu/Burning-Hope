@@ -3,22 +3,29 @@
 ## Index
 - <a href="#about">About</a>
   - <a href="#game-demo-video">Game Demo Video</a>
-  - <a href="#project-details">Project Details</a>
+  - <a href="#background">Background</a>
   - <a href="#game-synopsis">Game Synopsis</a>
+- <a href="#tools-and-technologies">Tools and Technologies</a>
 - <a href="#rules">Rules</a>
 - <a href="#play-the-game">Play The Game</a>
-- <a href="#tools-and-technologies">Tools and Technologies</a>
+
 
 ## About
 ### Game Demo Video
 [![Demo Video](https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/Assets/Sprites/Menu/background.png)](https://www.youtube.com/watch?v=f-EmctvfsOE)
-### Project Details
+### Background
 Burning Hope is a fast paced 2D platformer, where you take on the role of the mysterious adventurer GR on his explortation through North Peak Cave. Shrouded in darkness, the player must use their a single torch and a few sticks to illuminate their surroundings and complete challenging platforming to their attempt to escape. 
 
-This project was developed by Cameron Beaulieu, [Marc kevin Quijalvo](https://github.com/mkevinq), and [Callum Kipin](https://github.com/c-kip) as part of CISC 226 - Games Design at Queen's University during winter 2021.
+This project was developed by Cameron Beaulieu, [Marc kevin Quijalvo](https://github.com/mkevinq), and [Callum Kipin](https://github.com/c-kip) as part of CISC 226: Games Design at Queen's University during the Winter 2021 semester.
 ### Game Synopsis
 In Burning Hope, your goal is to escape the confines of a cave system which you have become trapped in. To do so, you must navigate a series of increasingly challenging platforming segments using the limited light sources available to you. Due to the darkness of the caves, these light sources will be required for the successful navigation of the depths. With your reliable torch, a few spares, and your nimble platforming abilities you must find an exit before becoming lost to the caves forever.
 
+## Tools and Technologies
+- Unity 2019.4.19f1
+- C#
+- Psikel + Photoshop (sprite creation)
+- JFXR (sounds creation)
+- The Unity Asset Store (Background, Platforms, Miscellaneous Decorations)
 
 ## Rules
 - ASD to move left, down, right respectively
@@ -40,7 +47,7 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
   - Projectiles are spawned by red projectile runes. These projectiles kill the player on contact
 <img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Projectile%20Spirtes.png" />
 
-  - The Magic Light follows your cursor and will destroy all projectils that collide with it, as well as illuminating the surrounding area
+  - The Magic Light follows your cursor and will destroy all projectiles that collide with it, as well as illuminating the surrounding area
 <div display = "inline-block">
 <img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Magic%20Torch%201.png" width = 30%/>
 <img src="https://github.com/Cameron-Beaulieu/Burning-Hope/blob/main/GameImages/Burning%20Hope%20Magic%20Torch%202.png" width = 30% />
@@ -49,9 +56,4 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
 ## Play The Game
 http://creative.caslab.queensu.ca/~burning-hope/
 
-## Tools and Technologies
-- Unity 2019.4.19f1
-- C#
-- Psikel + Photoshop (sprite creation)
-- JFXR (sounds creation)
-- The Unity Asset Store (Background, Platforms, Miscelaneous Decorations)
+
