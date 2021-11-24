@@ -23,7 +23,7 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
 ## Tools and Technologies
 - Unity 2019.4.19f1
 - C#
-- Psikel + Photoshop (sprite creation)
+- Piskel + Photoshop (sprite creation)
 - JFXR (sounds creation)
 - The Unity Asset Store (Background, Platforms, Miscellaneous Decorations)
 
