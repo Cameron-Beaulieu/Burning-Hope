@@ -54,6 +54,6 @@ In Burning Hope, your goal is to escape the confines of a cave system which you 
 </div>
 
 ## Play The Game
-http://creative.caslab.queensu.ca/~burning-hope/
+- Our hosting platform recently was taken down and we are currently getting the game hosted on another site. Until that is complete, the game is sadly not playable online. Check back soon and it should be ready to go!
 
 
